@@ -1,0 +1,29 @@
+﻿Connected Services - podloczone do projektu uslugi internetowe
+Dependencies - zaleznosci dodane do projektu, paczki
+Properties - wlasciwosci projektu
+Controllers - klasy kontrolerow
+appsetting.json - konfiguracja aplikacji
+Program.cs - glowna metoda main, tworzenie, konfigurowanie i uruchamianie hosta ogolnego ASP.NET Core
+Startup.cs - klasa startowa, konfiguracja aplikacji
+
+    Architektura warstwowa aplikacji
+        References
+Presentation -> Application -> Domain <- Infrastructure
+
+Domain - modele domenowe mapowane na encje bazo danowe
+    (1)Entities - tu definujemy klasy domenowe ktore beda mapowane na encje bazodanowe
+    (2)Interfaces - tu definiujemy abstrakcje dostepu do danych (same interfejsy, implementacja w infrastrukturze)
+    
+Application - implementacja logiki biznesowej (przetwarzanie, zapisywanie, przesylanie danych do klienta) Dto = datatransferobject
+
+Infrastructure - zestaw frameworkow i elementow oprogramowania wykorzystywanych w aplikacji (paczki)
+(silnik bazo danowy, konfiguracja kontekstu reprezentujacego polaczenie z baza danych, konwertery danych)
+    Repositories - tu implementujemy interfece'y
+
+Presentation - Web API, implementacja kontrolerow odpowiedzialnych za wykonywanie odpowiednich operacji (dane JSON)
+
+
+
+Utworzenie migracji i aktualizacja bazy danych SQL server***
+dotnet ef migrations add InitialCreate -s nazwaprojektu -p nazwaprojektu
+dotnet ef database update -s "Web API" -p Infrastructure
